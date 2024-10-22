@@ -1,6 +1,10 @@
 pipeline{
-
-    agent "built-in"
+    agent{
+        label {
+            label "built-in"
+            customWorkspace "/mnt/master-directory"
+        }
+    }
 
         stages{
             stage("Build"){
