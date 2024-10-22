@@ -1,9 +1,7 @@
 pipeline{
-    agent{
-        label{
-		    label "built-in"
-		    customWorkspace "/data/pipeline"
-        }
+
+    agent "built-in"
+
         stages{
             stage("Build"){
                 steps {
@@ -15,5 +13,4 @@ pipeline{
                 sh "scp -i /mnt/mumbai.pem target/LoginWebApp.war ec2-user@13.233.138.115:/mnt/server/tomcat/webapps"
             }
         }
-    }
 }
