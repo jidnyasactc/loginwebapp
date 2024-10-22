@@ -5,16 +5,17 @@ pipeline{
             customWorkspace "/mnt/master-directory"
         }
     }
-
-        stages{
-            stage("Build"){
-                steps {
-                    sh "mvn clean install"
-                }
+    stages{
+        stage("Build"){
+            steps {
+                sh "mvn clean install"
             }
-            stage("Deploy"){
+        }
+        stage("Deploy"){
+            steps{
                 sh "scp -i /mnt/mumbai.pem target/LoginWebApp.war ec2-user@13.233.61.15:/mnt/server/tomcat/webapps"
                 sh "scp -i /mnt/mumbai.pem target/LoginWebApp.war ec2-user@13.233.138.115:/mnt/server/tomcat/webapps"
             }
         }
+    }
 }
